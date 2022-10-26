@@ -9,19 +9,27 @@
 /* Begin PBXBuildFile section */
 		FFC0108C290983EA0017EC14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC0108B290983EA0017EC14 /* AppDelegate.swift */; };
 		FFC0108E290983EA0017EC14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC0108D290983EA0017EC14 /* SceneDelegate.swift */; };
-		FFC01090290983EA0017EC14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC0108F290983EA0017EC14 /* ViewController.swift */; };
+		FFC01090290983EA0017EC14 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC0108F290983EA0017EC14 /* MainTabBarViewController.swift */; };
 		FFC01095290983EB0017EC14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFC01094290983EB0017EC14 /* Assets.xcassets */; };
 		FFC01098290983EB0017EC14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFC01096290983EB0017EC14 /* LaunchScreen.storyboard */; };
+		FFC010A22909868E0017EC14 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC010A12909868E0017EC14 /* HomeViewController.swift */; };
+		FFC010A4290986A70017EC14 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC010A3290986A70017EC14 /* SearchViewController.swift */; };
+		FFC010A6290986BA0017EC14 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC010A5290986BA0017EC14 /* NotificationsViewController.swift */; };
+		FFC010A8290986C60017EC14 /* DirectMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC010A7290986C60017EC14 /* DirectMessagesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FFC01088290983EA0017EC14 /* Twitter Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Twitter Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFC0108B290983EA0017EC14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFC0108D290983EA0017EC14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FFC0108F290983EA0017EC14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FFC0108F290983EA0017EC14 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		FFC01094290983EB0017EC14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFC01097290983EB0017EC14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFC01099290983EB0017EC14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFC010A12909868E0017EC14 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FFC010A3290986A70017EC14 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		FFC010A5290986BA0017EC14 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		FFC010A7290986C60017EC14 /* DirectMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessagesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,34 @@
 		FFC0108A290983EA0017EC14 /* Twitter Clone */ = {
 			isa = PBXGroup;
 			children = (
+				FFC0109F290986750017EC14 /* Controllers */,
 				FFC0108B290983EA0017EC14 /* AppDelegate.swift */,
 				FFC0108D290983EA0017EC14 /* SceneDelegate.swift */,
-				FFC0108F290983EA0017EC14 /* ViewController.swift */,
+				FFC0108F290983EA0017EC14 /* MainTabBarViewController.swift */,
 				FFC01094290983EB0017EC14 /* Assets.xcassets */,
 				FFC01096290983EB0017EC14 /* LaunchScreen.storyboard */,
 				FFC01099290983EB0017EC14 /* Info.plist */,
 			);
 			path = "Twitter Clone";
+			sourceTree = "<group>";
+		};
+		FFC0109F290986750017EC14 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FFC010A02909867A0017EC14 /* Core */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FFC010A02909867A0017EC14 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FFC010A12909868E0017EC14 /* HomeViewController.swift */,
+				FFC010A3290986A70017EC14 /* SearchViewController.swift */,
+				FFC010A5290986BA0017EC14 /* NotificationsViewController.swift */,
+				FFC010A7290986C60017EC14 /* DirectMessagesViewController.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,9 +162,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFC01090290983EA0017EC14 /* ViewController.swift in Sources */,
+				FFC010A4290986A70017EC14 /* SearchViewController.swift in Sources */,
+				FFC01090290983EA0017EC14 /* MainTabBarViewController.swift in Sources */,
 				FFC0108C290983EA0017EC14 /* AppDelegate.swift in Sources */,
+				FFC010A6290986BA0017EC14 /* NotificationsViewController.swift in Sources */,
+				FFC010A22909868E0017EC14 /* HomeViewController.swift in Sources */,
 				FFC0108E290983EA0017EC14 /* SceneDelegate.swift in Sources */,
+				FFC010A8290986C60017EC14 /* DirectMessagesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
