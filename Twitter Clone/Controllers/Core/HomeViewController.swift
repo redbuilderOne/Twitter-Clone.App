@@ -26,8 +26,6 @@ class HomeViewController: UIViewController {
         super.viewDidLayoutSubviews()
         timelineTableView.frame = view.frame
     }
-    
-
 
 }
 
@@ -39,7 +37,28 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TweetTableViewCell.identifier, for: indexPath) as? TweetTableViewCell else { return UITableViewCell() }
+        cell.delegate = self
         return cell
+    }
+
+}
+
+extension HomeViewController: TweetTableViewCellDelegate {
+
+    func tweetTableViewCellDidTapReply() {
+        print("Reply")
+    }
+
+    func tweetTableViewCellDidTapRetweet() {
+        print("Retweet")
+    }
+
+    func tweetTableViewCellDidTapLike() {
+        print("Like")
+    }
+
+    func tweetTableViewCellDidTapShare() {
+        print("Share")
     }
 
 }
