@@ -9,7 +9,33 @@ import UIKit
 
 class ProfileTableViewHeader: UIView {
 
-    private var tabs: [UIButton] = ["Tweets", "Tweets & Replies", "Meida", "Likes"]
+    private enum SectionTabs: String {
+        case tweets = "Tweets"
+        case tweetsAndReplies = "Tweets & Replies"
+        case media = "Media"
+        case likes = "Likes"
+
+        var index: Int {
+            switch self {
+            case .tweets:
+                return 0
+            case .tweetsAndReplies:
+                return 1
+            case .media:
+                return 2
+            case .likes:
+                return 3
+            }
+        }
+    }
+
+    private var selectedTab: Int = 0 {
+        didSet {
+            print(selectedTab)
+        }
+    }
+
+    private var tabs: [UIButton] = ["Tweets", "Tweets & Replies", "Media", "Likes"]
         .map { buttonTitle in
             let button = UIButton(type: .system)
             button.setTitle(buttonTitle, for: .normal)
@@ -144,10 +170,34 @@ class ProfileTableViewHeader: UIView {
         addSubview(followersCountLabel)
         addSubview(sectionStack)
         configureConstraints()
+        configureStackButton()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    private func configureStackButton() {
+        for (_, button) in sectionStack.arrangedSubviews.enumerated() {
+            guard let button = button as? UIButton else { return }
+            button.addTarget(self, action: #selector(didTap(_:)), for: .touchUpInside)
+        }
+    }
+
+    @objc private func didTap(_ sender: UIButton) {
+        guard let label = sender.titleLabel?.text else { return }
+        switch label {
+        case SectionTabs.tweets.rawValue:
+            selectedTab = 0
+        case SectionTabs.tweetsAndReplies.rawValue:
+            selectedTab = 1
+        case SectionTabs.media.rawValue:
+            selectedTab = 2
+        case SectionTabs.likes.rawValue:
+            selectedTab = 3
+        default:
+            selectedTab = 0
+        }
     }
 
     private func configureConstraints() {
