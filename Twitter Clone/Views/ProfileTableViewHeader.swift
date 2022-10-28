@@ -9,6 +9,61 @@ import UIKit
 
 class ProfileTableViewHeader: UIView {
 
+    private var tabs: [UIButton] = ["Tweets", "Tweets & Replies", "Meida", "Likes"]
+        .map { buttonTitle in
+            let button = UIButton(type: .system)
+            button.setTitle(buttonTitle, for: .normal)
+            button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+            button.tintColor = .label
+            button.translatesAutoresizingMaskIntoConstraints = false
+            return button
+        }
+
+    private lazy var sectionStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: tabs)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .equalSpacing
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        return stackView
+    }()
+
+    private let followersTextLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Followers"
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+
+    private let followersCountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "999"
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+
+    private let followingTextLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Following"
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+
+    private let followingCountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "111"
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 14, weight: .bold)
+        return label
+    }()
+
     private let joindedDateLabel: UILabel = {
         let label = UILabel()
         label.text = "Joined MM YYYY"
@@ -66,8 +121,8 @@ class ProfileTableViewHeader: UIView {
 
     private let profileHeaderImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "")
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "backgroundImg")
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -83,6 +138,11 @@ class ProfileTableViewHeader: UIView {
         addSubview(userBioLabel)
         addSubview(joinDateImageView)
         addSubview(joindedDateLabel)
+        addSubview(followingTextLabel)
+        addSubview(followingCountLabel)
+        addSubview(followersTextLabel)
+        addSubview(followersCountLabel)
+        addSubview(sectionStack)
         configureConstraints()
     }
 
@@ -95,7 +155,7 @@ class ProfileTableViewHeader: UIView {
             profileHeaderImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             profileHeaderImageView.topAnchor.constraint(equalTo: topAnchor),
             profileHeaderImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            profileHeaderImageView.heightAnchor.constraint(equalToConstant: 180)
+            profileHeaderImageView.heightAnchor.constraint(equalToConstant: 150)
         ]
 
         let profileAvatarImageViewConstraints = [
@@ -131,6 +191,33 @@ class ProfileTableViewHeader: UIView {
             joindedDateLabel.bottomAnchor.constraint(equalTo: joinDateImageView.bottomAnchor)
         ]
 
+        let followingCountLabelConstraints = [
+            followingCountLabel.leadingAnchor.constraint(equalTo: displayNameLabel.leadingAnchor),
+            followingCountLabel.topAnchor.constraint(equalTo: joindedDateLabel.bottomAnchor, constant: 10)
+        ]
+
+        let followingTextLabelConstraints = [
+            followingTextLabel.leadingAnchor.constraint(equalTo: followingCountLabel.trailingAnchor, constant: 4),
+            followingTextLabel.bottomAnchor.constraint(equalTo: followingCountLabel.bottomAnchor)
+        ]
+
+        let followersCountLabelConstraints = [
+            followersCountLabel.leadingAnchor.constraint(equalTo: followingTextLabel.trailingAnchor, constant: 8),
+            followersCountLabel.bottomAnchor.constraint(equalTo: followingCountLabel.bottomAnchor)
+        ]
+
+        let followersTextLabelConstraints = [
+            followersTextLabel.leadingAnchor.constraint(equalTo: followersCountLabel.trailingAnchor, constant: 4),
+            followersTextLabel.bottomAnchor.constraint(equalTo: followingCountLabel.bottomAnchor)
+        ]
+
+        let sectionStackConstraints = [
+            sectionStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            sectionStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
+            sectionStack.topAnchor.constraint(equalTo: followingCountLabel.bottomAnchor, constant: 5),
+            sectionStack.heightAnchor.constraint(equalToConstant: 35)
+        ]
+
         NSLayoutConstraint.activate(profileHeaderImageViewConstraints)
         NSLayoutConstraint.activate(profileAvatarImageViewConstraints)
         NSLayoutConstraint.activate(displayNameLabelConstraints)
@@ -138,6 +225,11 @@ class ProfileTableViewHeader: UIView {
         NSLayoutConstraint.activate(userBioLabelConstraints)
         NSLayoutConstraint.activate(joinDateImageViewConstraints)
         NSLayoutConstraint.activate(joindedDateLabelConstraints)
+        NSLayoutConstraint.activate(followingCountLabelConstraints)
+        NSLayoutConstraint.activate(followingTextLabelConstraints)
+        NSLayoutConstraint.activate(followersCountLabelConstraints)
+        NSLayoutConstraint.activate(followersTextLabelConstraints)
+        NSLayoutConstraint.activate(sectionStackConstraints)
     }
 
 }
