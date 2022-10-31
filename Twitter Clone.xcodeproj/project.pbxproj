@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF530ACD2910111F00F4BF8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF530ACC2910111F00F4BF8F /* GoogleService-Info.plist */; };
 		FFC0108C290983EA0017EC14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC0108B290983EA0017EC14 /* AppDelegate.swift */; };
 		FFC0108E290983EA0017EC14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC0108D290983EA0017EC14 /* SceneDelegate.swift */; };
 		FFC01090290983EA0017EC14 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC0108F290983EA0017EC14 /* MainTabBarViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FF530ACC2910111F00F4BF8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFC01088290983EA0017EC14 /* Twitter Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Twitter Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFC0108B290983EA0017EC14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFC0108D290983EA0017EC14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				FFC01094290983EB0017EC14 /* Assets.xcassets */,
 				FFC01096290983EB0017EC14 /* LaunchScreen.storyboard */,
 				FFC01099290983EB0017EC14 /* Info.plist */,
+				FF530ACC2910111F00F4BF8F /* GoogleService-Info.plist */,
 			);
 			path = "Twitter Clone";
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			files = (
 				FFC01098290983EB0017EC14 /* LaunchScreen.storyboard in Resources */,
 				FFC01095290983EB0017EC14 /* Assets.xcassets in Resources */,
+				FF530ACD2910111F00F4BF8F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
