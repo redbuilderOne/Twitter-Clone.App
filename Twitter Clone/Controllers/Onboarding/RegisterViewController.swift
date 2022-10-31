@@ -63,6 +63,13 @@ class RegisterViewController: UIViewController {
         viewModel.$isRegistrationFormValid.sink { [weak self] validationState in
             self?.registerButton.isEnabled = validationState
         }
+
+        .store(in: &subscriptions)
+
+        viewModel.$user.sink { [weak self] user in
+            print(user)
+        }
+
         .store(in: &subscriptions)
     }
 
@@ -80,6 +87,10 @@ class RegisterViewController: UIViewController {
         view.endEditing(true)
     }
 
+    @objc private func didTapRegister() {
+        viewModel.createUser()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -87,6 +98,7 @@ class RegisterViewController: UIViewController {
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(registerButton)
+        registerButton.addTarget(self, action: #selector(didTapRegister), for: .touchUpInside)
         configureConstraints()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
         bindViews()
