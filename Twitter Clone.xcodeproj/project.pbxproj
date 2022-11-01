@@ -25,6 +25,7 @@
 		FF417D78291174EE00222DAE /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF417D77291174EE00222DAE /* DatabaseManager.swift */; };
 		FF417D7A2911785900222DAE /* HomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF417D792911785900222DAE /* HomeViewViewModel.swift */; };
 		FF417D7C29117B8200222DAE /* ProfileDataFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF417D7B29117B8200222DAE /* ProfileDataFormViewController.swift */; };
+		FF417D7E29117C7500222DAE /* ProfileDataFormViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF417D7D29117C7500222DAE /* ProfileDataFormViewViewModel.swift */; };
 		FF530ACD2910111F00F4BF8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF530ACC2910111F00F4BF8F /* GoogleService-Info.plist */; };
 		FFC0108C290983EA0017EC14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC0108B290983EA0017EC14 /* AppDelegate.swift */; };
 		FFC0108E290983EA0017EC14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC0108D290983EA0017EC14 /* SceneDelegate.swift */; };
@@ -50,6 +51,7 @@
 		FF417D77291174EE00222DAE /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		FF417D792911785900222DAE /* HomeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewViewModel.swift; sourceTree = "<group>"; };
 		FF417D7B29117B8200222DAE /* ProfileDataFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataFormViewController.swift; sourceTree = "<group>"; };
+		FF417D7D29117C7500222DAE /* ProfileDataFormViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataFormViewViewModel.swift; sourceTree = "<group>"; };
 		FF530ACC2910111F00F4BF8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFC01088290983EA0017EC14 /* Twitter Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Twitter Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFC0108B290983EA0017EC14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				FF162FC62910256600C1BBCB /* AuthenticationViewViewModel.swift */,
 				FF417D792911785900222DAE /* HomeViewViewModel.swift */,
+				FF417D7D29117C7500222DAE /* ProfileDataFormViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				FFC010A22909868E0017EC14 /* HomeViewController.swift in Sources */,
 				FFC0108E290983EA0017EC14 /* SceneDelegate.swift in Sources */,
 				FF162FC72910256600C1BBCB /* AuthenticationViewViewModel.swift in Sources */,
+				FF417D7E29117C7500222DAE /* ProfileDataFormViewViewModel.swift in Sources */,
 				FFFF4A4A290AE51700031C23 /* ProfileViewController.swift in Sources */,
 				FFC010A8290986C60017EC14 /* DirectMessagesViewController.swift in Sources */,
 				FFFF4A4C290AEAAB00031C23 /* ProfileTableViewHeader.swift in Sources */,
