@@ -10,6 +10,8 @@ import FirebaseAuth
 
 class HomeViewController: UIViewController {
 
+    private var viewModel = HomeViewViewModel()
+
     private let timelineTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(TweetTableViewCell.self, forCellReuseIdentifier: TweetTableViewCell.identifier)
@@ -43,6 +45,20 @@ class HomeViewController: UIViewController {
         }
     }
 
+    func completeUserOnboarding() {
+
+    }
+
+    func bindViews() {
+        viewModel.$user
+            .sink { [weak self] user in
+                guard let user = user else { return }
+                if !user.isUserOnboarded {
+                    self?.completeUserOnboarding()
+                }
+            }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(timelineTableView)
@@ -50,6 +66,7 @@ class HomeViewController: UIViewController {
         timelineTableView.dataSource = self
         configureNavigationBar()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), style: .plain, target: self, action: #selector(didTapSignOut))
+        bindViews()
     }
 
     @objc private func didTapSignOut() {
@@ -66,6 +83,7 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         handleAuthentication()
+        viewModel.retreiveUser()
     }
 
 }
