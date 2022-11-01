@@ -62,7 +62,6 @@ class LoginViewController: UIViewController {
         viewModel.$isAuthenticationFormValid.sink { [weak self] validationState in
             self?.loginButton.isEnabled = validationState
         }
-
         .store(in: &subscriptions)
 
         viewModel.$user.sink { [weak self] user in
@@ -70,8 +69,20 @@ class LoginViewController: UIViewController {
             guard let viewController = self?.navigationController?.viewControllers.first as? OnboardingViewController else { return }
             viewController.dismiss(animated: true)
         }
-
         .store(in: &subscriptions)
+
+        viewModel.$error.sink { [weak self] errorString in
+            guard let error = errorString else { return }
+            self?.presentAlert(with: error)
+        }
+        .store(in: &subscriptions)
+    }
+
+    private func presentAlert(with error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        let okayButton = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(okayButton)
+        present(alert, animated: true)
     }
 
     @objc func didChangeEmailField() {
