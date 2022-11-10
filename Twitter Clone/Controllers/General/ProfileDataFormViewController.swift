@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 class ProfileDataFormViewController: UIViewController {
 
@@ -62,7 +63,7 @@ class ProfileDataFormViewController: UIViewController {
         imageView.image = UIImage(systemName: "camera.fill")
         imageView.tintColor = .gray
         imageView.isUserInteractionEnabled = true
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
 
@@ -105,9 +106,25 @@ class ProfileDataFormViewController: UIViewController {
         displayNameTextField.delegate = self
         usernameTextField.delegate = self
         bioTextView.delegate = self
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
 
         configureConstraints()
         isModalInPresentation = true
+        avatarPlaceholderImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToUpload)))
+    }
+
+    @objc private func didTapToDismiss() {
+        view.endEditing(true)
+    }
+
+    @objc private func didTapToUpload() {
+        var configuration = PHPickerConfiguration()
+        configuration.filter = .images
+        configuration.selectionLimit = 1
+
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        present(picker, animated: true)
     }
 
     private func configureConstraints() {
@@ -157,7 +174,6 @@ class ProfileDataFormViewController: UIViewController {
             submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             submitButton.heightAnchor.constraint(equalToConstant: 50),
             submitButton.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -20)
-
         ]
 
         NSLayoutConstraint.activate(scrollViewConstraints)
@@ -174,6 +190,7 @@ class ProfileDataFormViewController: UIViewController {
 extension ProfileDataFormViewController: UITextViewDelegate, UITextFieldDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: textView.frame.origin.y - 100), animated: true)
         if textView.textColor == .gray {
             textView.textColor = .label
             textView.text = ""
@@ -192,7 +209,25 @@ extension ProfileDataFormViewController: UITextViewDelegate, UITextFieldDelegate
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
 
+}
+
+extension ProfileDataFormViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+
+        for result in results {
+            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
+                if let image = object as? UIImage {
+                    DispatchQueue.main.async {
+                        self?.avatarPlaceholderImageView.image = image
+                    }
+
+                }
+            }
+        }
     }
 
 }
