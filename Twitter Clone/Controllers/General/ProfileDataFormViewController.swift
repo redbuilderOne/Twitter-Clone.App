@@ -100,6 +100,7 @@ class ProfileDataFormViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        isModalInPresentation = true
         view.addSubview(scrollView)
         scrollView.addSubview(hintLabel)
         scrollView.addSubview(avatarPlaceholderImageView)
@@ -111,11 +112,14 @@ class ProfileDataFormViewController: UIViewController {
         usernameTextField.delegate = self
         bioTextView.delegate = self
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
-
-        configureConstraints()
-        isModalInPresentation = true
         avatarPlaceholderImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToUpload)))
+        submitButton.addTarget(self, action: #selector(didTapSubmit), for: .touchUpInside)
+        configureConstraints()
         bindViews()
+    }
+
+    @objc private func didTapSubmit() {
+        viewModel.uploadAvatar()
     }
 
     private func bindViews() {
