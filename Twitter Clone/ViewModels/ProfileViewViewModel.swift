@@ -1,20 +1,20 @@
 //
-//  HomeViewViewModel.swift
+//  ProfileViewViewModel.swift
 //  Twitter Clone
 //
-//  Created by Дмитрий Скворцов on 01.11.2022.
+//  Created by Дмитрий Скворцов on 29.11.2022.
 //
 
 import Foundation
 import Combine
 import FirebaseAuth
 
-final class HomeViewViewModel: ObservableObject {
+final class ProfileViewViewModel: ObservableObject {
+
+    private var subscriptions: Set<AnyCancellable> = []
 
     @Published var user: TwitterUser?
     @Published var error: String?
-
-    private var subscriptions: Set<AnyCancellable> = []
 
     func retreiveUser() {
         guard let id = Auth.auth().currentUser?.uid else { return }
@@ -30,5 +30,6 @@ final class HomeViewViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
     }
+
 
 }
