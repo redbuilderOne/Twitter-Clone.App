@@ -10,6 +10,7 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     private var isStatusBarHidden: Bool = true
+    private var viewModel = ProfileViewViewModel()
 
     private let statusBar: UIView = {
         let view = UIView()
@@ -26,19 +27,26 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
 
+    private lazy var headerView = ProfileTableViewHeader(frame: CGRect(x: 0, y: 0, width: profileTableView.frame.width, height: 380))
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         navigationItem.title = "Profile"
         view.addSubview(profileTableView)
         view.addSubview(statusBar)
-        let headerView = ProfileTableViewHeader(frame: CGRect(x: 0, y: 0, width: profileTableView.frame.width, height: 380))
+
         profileTableView.tableHeaderView = headerView
         profileTableView.contentInsetAdjustmentBehavior = .never 
         navigationController?.navigationBar.isHidden = true
+
         profileTableView.delegate = self
         profileTableView.dataSource = self
         configureConstraints()
+    }
+
+    private func bindViews() {
+
     }
 
     private func configureConstraints() {

@@ -101,7 +101,7 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
 
-    private let followingCountLabel: UILabel = {
+    var followingCountLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "111"
@@ -110,7 +110,7 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
 
-    private let joindedDateLabel: UILabel = {
+    var joindedDateLabel: UILabel = {
         let label = UILabel()
         label.text = "Joined MM YYYY"
         label.textColor = .secondaryLabel
@@ -127,7 +127,7 @@ class ProfileTableViewHeader: UIView {
         return imageView
     }()
 
-    private let userBioLabel: UILabel = {
+    var userBioLabel: UILabel = {
         let label = UILabel()
         label.text = "user's bio"
         label.numberOfLines = 3
@@ -136,7 +136,7 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
 
-    private let usernameLabel: UILabel = {
+    var usernameLabel: UILabel = {
         let label = UILabel()
         label.text = "@username"
         label.font = .systemFont(ofSize: 18, weight: .regular)
@@ -145,7 +145,7 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
 
-    private let displayNameLabel: UILabel = {
+    var displayNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Name"
         label.font = .systemFont(ofSize: 24, weight: .bold)
