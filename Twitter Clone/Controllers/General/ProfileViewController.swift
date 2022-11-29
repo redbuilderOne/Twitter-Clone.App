@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import SDWebImage
 
 class ProfileViewController: UIViewController {
 
@@ -48,7 +49,7 @@ class ProfileViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         viewModel.retreiveUser()
     }
 
@@ -60,6 +61,7 @@ class ProfileViewController: UIViewController {
             self?.headerView.followingCountLabel.text = "\(user.followingCount)"
             self?.headerView.followersCountLabel.text = "\(user.followersCount)"
             self?.headerView.userBioLabel.text = user.bio
+            self?.headerView.profileAvatarImageView.sd_setImage(with: URL(string: user.avatarPath))
         }
         .store(in: &subscriptions)
     }
