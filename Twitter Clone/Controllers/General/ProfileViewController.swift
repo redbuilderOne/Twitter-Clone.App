@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import Combine
 
 class ProfileViewController: UIViewController {
 
     private var isStatusBarHidden: Bool = true
     private var viewModel = ProfileViewViewModel()
+    private var subscriptions: Set<AnyCancellable> = []
 
     private let statusBar: UIView = {
         let view = UIView()
@@ -37,7 +39,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(statusBar)
 
         profileTableView.tableHeaderView = headerView
-        profileTableView.contentInsetAdjustmentBehavior = .never 
+        profileTableView.contentInsetAdjustmentBehavior = .never
         navigationController?.navigationBar.isHidden = true
 
         profileTableView.delegate = self
@@ -45,8 +47,21 @@ class ProfileViewController: UIViewController {
         configureConstraints()
     }
 
-    private func bindViews() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        viewModel.retreiveUser()
+    }
 
+    private func bindViews() {
+        viewModel.$user.sink { [weak self] user in
+            guard let user = user else { return }
+            self?.headerView.displayNameLabel.text = user.displayName
+            self?.headerView.usernameLabel.text = "@\(user.userName)"
+            self?.headerView.followingCountLabel.text = "\(user.followingCount)"
+            self?.headerView.followersCountLabel.text = "\(user.followersCount)"
+            self?.headerView.userBioLabel.text = user.bio
+        }
+        .store(in: &subscriptions)
     }
 
     private func configureConstraints() {
